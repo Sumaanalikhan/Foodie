@@ -1,0 +1,55 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Foodie.SiteMaster" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Foodie Restaurant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+    <style>
+        body { background-color: #f8f5f0; font-family: 'Segoe UI', sans-serif; }
+        .navbar { background-color: #c0392b !important; }
+        .navbar-brand { font-weight: 700; font-size: 1.5rem; color: #fff !important; }
+        .nav-link { color: rgba(255,255,255,0.85) !important; }
+        .nav-link:hover { color: #fff !important; }
+        footer { background-color: #2c2c2c; color: #ccc; padding: 20px 0; margin-top: 50px; }
+    </style>
+</head>
+<body>
+    <form id="MainForm" runat="server">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="Menu.aspx">🍔 Foodie</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                    <span class="navbar-toggler-icon" style="filter:invert(1)"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navMenu">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="Menu.aspx"><i class="fas fa-utensils me-1"></i>Menu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Cart.aspx"><i class="fas fa-shopping-cart me-1"></i>Cart</a></li>
+                        <% if (Session["UserID"] != null) { %>
+                            <li class="nav-item"><a class="nav-link" href="OrderHistory.aspx"><i class="fas fa-list me-1"></i>My Orders</a></li>
+                            <li class="nav-item"><a class="nav-link" href="Logout.aspx"><i class="fas fa-sign-out-alt me-1"></i>Logout</a></li>
+                        <% } else { %>
+                            <li class="nav-item"><a class="nav-link" href="Login.aspx"><i class="fas fa-sign-in-alt me-1"></i>Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="Register.aspx"><i class="fas fa-user-plus me-1"></i>Register</a></li>
+                        <% } %>
+                        <li class="nav-item"><a class="nav-link" href="AdminLogin.aspx"><i class="fas fa-lock me-1"></i>Admin</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mt-4">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+
+        <footer class="text-center">
+            <p class="mb-0">© 2025 Foodie Restaurant. All rights reserved.</p>
+        </footer>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
